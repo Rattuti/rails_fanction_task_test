@@ -14,6 +14,25 @@ class UsersController < ApplicationController
     else
       render :new
     end
+
+    respond_to do |format|
+      if @user.save
+        UserMailer.with(to: "test@example.com",
+        name: "dic").welcome.deliver_now # 追加
+        format.html { redirect_to @user,
+        notice: 'User was successfully created.' }
+        format.json { render :show,
+                     status: :created,
+                     location: @user }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors,
+                 status: :unprocessable_entity }
+      end
+    end
+  end
+
+
   end
 
   def show
