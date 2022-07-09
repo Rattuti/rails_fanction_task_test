@@ -5,5 +5,5 @@ class UserMailer < ApplicationMailer
         @name = params[:name] 
         mail(to: params[:to], subject: "登録完了") 
         # メール送信
-      end
+    end
 end
