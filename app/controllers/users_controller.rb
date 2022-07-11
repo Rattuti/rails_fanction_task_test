@@ -17,8 +17,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        UserMailer.with(to: "test@example.com", name: "dic").welcome.deliver_now # 追加
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        UserMailer.with(to: @user.email, name: @user.name).welcome.deliver_later # 追加
+        format.html { redirect_to @user, notice: 'アカウントを登録しました。' }
         format.json { render :show,status: :created,location: @user }
       else
         format.html { render :new }
