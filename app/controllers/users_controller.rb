@@ -8,12 +8,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      log_in(@user)
-      redirect_to user_path(@user.id), notice: 'アカウントを登録しました。'
-    else
-      render :new
-    end
+    #if @user.save
+    #  log_in(@user)
+    #  redirect_to user_path(@user.id), notice: 'アカウントを登録しました。'
+    #else
+    #  render :new
+    #end
 
     respond_to do |format|
       if @user.save
